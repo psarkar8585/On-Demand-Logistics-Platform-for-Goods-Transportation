@@ -1,73 +1,38 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Arial', sans-serif;
+body{
+    background-image: url('images/bg.jpeg');
+    
+    background-attachment: fixed; 
+    background-repeat: no-repeat;
+    height: 100vh; 
 }
-
-body {
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #f0f0f0;
-}
-
-.login-container {
-    background-color: white;
-    padding: 40px;
+.ride-request {
+    max-width: 400px;
+    margin: 50px auto;
+    padding: 20px;
     border-radius: 10px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-    width: 300px;
+    background-color: #f2f2f2;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
-
-h2 {
+.ride-request h2 {
     text-align: center;
-    margin-bottom: 20px;
-}
-
-.input-group {
-    margin-bottom: 20px;
-}
-
-label {
-    font-size: 14px;
     color: #333;
 }
-
-input[type="text"], input[type="password"] {
+.ride-request input {
     width: 100%;
     padding: 10px;
-    margin-top: 5px;
+    margin: 10px 0;
     border: 1px solid #ccc;
     border-radius: 5px;
 }
-
-button {
+.ride-request button {
     width: 100%;
     padding: 10px;
-    background-color: #4CAF50;
+    background-color: #007bff;
     color: white;
     border: none;
     border-radius: 5px;
-    font-size: 16px;
     cursor: pointer;
 }
-
-button:hover {
-    background-color: #45a049;
-}
-
-.signup-text {
-    text-align: center;
-    margin-top: 10px;
-}
-
-.signup-text a {
-    color: #4CAF50;
-    text-decoration: none;
-}
-
-.signup-text a:hover {
-    text-decoration: underline;
+.ride-request button:hover {
+    background-color: #0056b3;
 }

@@ -35,5 +35,22 @@ def home():
     else:
         return "Failed to connect to the database."
 
+@app.route('/')
+def index():
+    return render_template('index.html')  # The HTML file with the frontend code goes here.
+
+@app.route('/get-price', methods=['POST'])
+def get_price():
+    location = request.form['location']
+    destination = request.form['destination']
+    
+    # In real-world apps, call an API or calculate price dynamically here.
+    # For now, we'll mock up a price based on static data.
+    
+    mock_price = 15.99  # Example static price
+    return f"Estimated price from {location} to {destination} is ${mock_price:.2f}"
+
+# @app.route('/user')
+
 if __name__ == '__main__':
     app.run(debug=True)
