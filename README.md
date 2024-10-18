@@ -77,3 +77,38 @@ This is a Flask web application for booking goods pickup and delivery services. 
 
 The price is calculated using a base fare of $5.00 USD and a rate of $2.00 USD per kilometer. The formula is:
 
+Where:
+- `base_fare` is $5.00
+- `per_km_rate` is $2.00
+
+### Database
+
+The app uses a PostgreSQL database to store user and booking information.
+
+- **Database Schema**:
+    - Users table with `username`, `contact`, and `password` fields.
+    - Bookings table with information about pickup and drop-off locations, price, and booking status.
+
+### File Structure
+
+- **`app.py`**: The main Flask application.
+- **`templates/`**: Contains HTML templates for rendering pages.
+- **`static/`**: Contains static assets such as CSS and JavaScript files.
+- **`requirements.txt`**: Contains the list of dependencies.
+
+### Running the Application
+
+Once the application is running, you can access it at:
+
+
+- **User Dashboard**: `/dashboard` shows the real-time status of the user's bookings.
+
+### Notes
+
+- Remember to replace the placeholder `GOOGLE_MAPS_API_KEY` with your actual Google Maps API key.
+- Password hashing and other security measures are not implemented in this example. Please add password hashing and proper authentication in production.
+
+## License
+
+This project is licensed under the MIT License. See the `LICENSE` file for more information.
+
