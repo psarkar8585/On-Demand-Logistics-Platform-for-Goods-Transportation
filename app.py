@@ -52,6 +52,11 @@ def diver():
 @app.route("/divers")
 def divers():
     return render_template('diversign.html')
+
+@app.route("/dashboard")
+def dashboard():
+    return render_template('userdashboard.html')
+
 @app.route('/get-price', methods=['POST'])
 def get_price():
     location = request.form['location']
