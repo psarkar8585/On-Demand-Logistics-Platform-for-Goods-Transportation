@@ -18,7 +18,7 @@
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
               <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="#">Ride</a>
+                <a class="nav-link active" aria-current="page" href="{{ url_for('user') }}">Ride</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="#">Drive</a>
@@ -28,10 +28,10 @@
             </ul>
             <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
                 <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked>
-                <label class="btn btn-outline-primary" for="btnradio1">Sign In</label>
-              
-                <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off">
-                <label class="btn btn-outline-primary" for="btnradio2">Sign Up</label>
+                <a href="{{ url_for('user') }}" class="btn btn-outline-primary">Sign In</a>
+
+                <a href="{{ url_for('user') }}" class="btn btn-outline-primary">Sign Up</a>
+
               </div>
           </div>
         </div>

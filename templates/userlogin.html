@@ -10,20 +10,14 @@
     <div class="login-container">
         <h2>Login</h2>
         <form action="#" method="POST">
-            <div class="input-group">
-                <label for="username">Username</label>
-                <input type="text" id="username" name="username" required>
-            </div>
-            <div class="input-group">
-                <label for="password">Password</label>
-                <input type="password" id="password" name="password" required>
-            </div>
-            <div class="input-group">
-                <button type="submit">Login</button>
-            </div>
+            <label for="username">Username</label>
+            <input type="text" id="username" name="username" required>
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" required>
+            <button type="submit">Login</button>
         </form>
-
         <p class="signup-text">Don't have an account? <br><a href="#">Sign up</a></p>
+        <a href="{{ url_for('home') }}" class="btn btn-outline-primary"><button>Back</button></a>
     </div>
 </body>
 </html>

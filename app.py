@@ -1,7 +1,9 @@
-from flask import Flask, request, redirect, url_for, render_template, abort
+import requests  # Import the requests module for making external HTTP requests
+from flask import Flask, request, render_template
 import psycopg2
 
 app = Flask(__name__)
+GOOGLE_MAPS_API_KEY = 'YOUR_API_KEY_HERE'
 
 # Database connection parameters
 hostname = 'localhost'
@@ -31,26 +33,71 @@ def get_db_connection():
 def home():
     conn = get_db_connection()
     if conn:
-        return "Connected to the database successfully!"
+        return render_template('index.html')
     else:
         return "Failed to connect to the database."
 
-@app.route('/')
-def index():
-    return render_template('index.html')  # The HTML file with the frontend code goes here.
+@app.route("/user")
+def user():
+    return render_template('userlogin.html')
 
 @app.route('/get-price', methods=['POST'])
 def get_price():
     location = request.form['location']
     destination = request.form['destination']
     
-    # In real-world apps, call an API or calculate price dynamically here.
-    # For now, we'll mock up a price based on static data.
+    # Call Google Maps Distance Matrix API
+    distance_data = get_distance(location, destination)
     
-    mock_price = 15.99  # Example static price
-    return f"Estimated price from {location} to {destination} is ${mock_price:.2f}"
+    if not distance_data:
+        return f"Could not calculate distance between {location} and {destination}. Please try again."
 
-# @app.route('/user')
+    # Calculate the price based on distance
+    distance_in_km = distance_data['distance']
+    estimated_price = calculate_price(distance_in_km)
+    
+    return f"Estimated price from {location} to {destination} is ${estimated_price:.2f}"
+
+def get_distance(origin, destination):
+    """Call Google Maps API to get distance between two locations."""
+    url = "https://maps.googleapis.com/maps/api/distancematrix/json"
+    
+    params = {
+        'origins': origin,
+        'destinations': destination,
+        'key': GOOGLE_MAPS_API_KEY,
+        'units': 'metric'
+    }
+    
+    # Use requests.get instead of request.get to make the API call
+    response = requests.get(url, params=params)
+    
+    if response.status_code != 200:
+        return None
+    
+    data = response.json()
+    
+    if data['status'] != 'OK':
+        return None
+    
+    # Extract distance in kilometers from the response
+    distance_info = data['rows'][0]['elements'][0]
+    
+    if distance_info['status'] != 'OK':
+        return None
+    
+    distance_in_meters = distance_info['distance']['value']
+    distance_in_km = distance_in_meters / 1000  # Convert meters to kilometers
+    
+    return {'distance': distance_in_km}
+
+def calculate_price(distance_km):
+    """Calculate price based on distance (example pricing logic)."""
+    base_fare = 5.00  # Base fare in USD
+    per_km_rate = 2.00  # Rate per kilometer in USD
+    
+    price = base_fare + (distance_km * per_km_rate)
+    return price
 
 if __name__ == '__main__':
     app.run(debug=True)
