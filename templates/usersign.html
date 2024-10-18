@@ -8,15 +8,17 @@
 </head>
 <body>
     <div class="login-container">
-        <h2>Login</h2>
+        <h2>Sign Up</h2>
         <form action="#" method="POST">
             <label for="username">Username</label>
             <input type="text" id="username" name="username" required>
             <label for="password">Password</label>
             <input type="password" id="password" name="password" required>
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" required>
             <button type="submit">Login</button>
         </form>
-        <p class="signup-text">Don't have an account? <br><a href="{{ url_for('users') }}">Sign up</a></p>
+        <p class="signup-text">Do you have an account? <br><a href="{{ url_for('user') }}">Sign In</a></p>
         <a href="{{ url_for('home') }}" class="btn btn-outline-primary"><button>Back</button></a>
     </div>
 </body>

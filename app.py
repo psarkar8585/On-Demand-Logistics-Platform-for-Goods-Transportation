@@ -41,6 +41,10 @@ def home():
 def user():
     return render_template('userlogin.html')
 
+@app.route("/users")
+def users():
+    return render_template('usersign.html')
+
 @app.route('/get-price', methods=['POST'])
 def get_price():
     location = request.form['location']
